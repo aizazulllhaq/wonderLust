@@ -1,0 +1,48 @@
+<% layout('/layout/boilerplate') %>
+
+<body>
+  <div class="row mt-3 mb-3">
+    <div class="col-8 offset-2">
+      <h1>Edit This Listing</h1>
+      <form action="/listings/<%= list._id %>/edit?_method=PUT" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="listing[title]" id="title" value="<%= list.title %>" class="form-control" required>
+        </div>
+        <div class="valid-feedback">That's a good Title</div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea name="listing[description]" id="description" cols="30" rows="5" class="form-control" required><%= list.description %></textarea>
+        </div>
+        <div class="valid-feedback">That's a good Description</div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload New Image</label>
+          <input type="file" name="listing[image]" id="image" value="<%= list.image %>" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <p>Oringal Image</p>
+          <img src="<%= orignalImgUrl %>" alt="">
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" id="country" name="listing[country]" value="<%= list.country%>" class="form-control" required>
+          </div>
+          <div class="valid-feedback">That's good!</div>
+          <div class="mb-3 col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="listing[location]" id="location" class="form-control" value="<%= list.location %>" required>
+            <div class="valid-feedback">That's good!</div>
+          </div>
+        </div>
+        <div class="mb-3 col-4">
+          <label for="price" class="form-label">Price</label>
+          <input type="text" name="listing[price]" value="<%= list.price %>" id="price" class="form-control" required>
+          <div class="valid-feedback">That's a good Price</div>
+        </div>
+        <button class="btn btn-dark edit-btn">Edit</button>
+      </form>
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+</body>

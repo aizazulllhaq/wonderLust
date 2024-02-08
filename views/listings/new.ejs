@@ -1,0 +1,55 @@
+<% layout('/layout/boilerplate') %>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <br><br>
+                    <h1>Create a New WonderLust</h1>
+                    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" name="listing[title]" placeholder="Add a Catchy Title"
+                                class="form-control" required>
+                            <div class="valid-feedback">Thats a good Title!</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea name="listing[description]" id="description" cols="50" rows="20"
+                                placeholder="Enter your Description" class="form-control" required></textarea>
+                            <div class="valid-feedback">Thats a good Description!</div>
+                            <div class="invalid-feedback">Description should be present!</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Upload Listing Image</label>
+                            <input name="listing[image]" type="file" id="image" placeholder="Enter Image URL"
+                                class="form-control" required>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-4">
+                                <label for="country">Country</label>
+                                <input type="text" name="listing[country]" id="country" placeholder="Enter your Country"
+                                    class="form-control" required>
+                            <div class="valid-feedback">Thats good!</div>
+                            </div>
+                            <div class="mb-3 col-md-8">
+                                <label for="location">Location</label>
+                                <input type="text" name="listing[location]" id="location"
+                                    placeholder="Enter your Location" class="form-control" required>
+                            <div class="valid-feedback">Thats good!</div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="price">Price</label>
+                            <input type="number" name="listing[price]" id="price" class="form-control"
+                                placeholder="RS: 12000" required>
+                            <div class="valid-feedback">Thats a good Price!</div>
+                        </div>
+                        <button class="btn btn-dark add-btn">Create Now</button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
