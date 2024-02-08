@@ -4,7 +4,7 @@ const { Listing } = require('../models/listngModel');
 
 exports.index = wrapAsync(async (req, res) => {
 
-    const index = await Listing.find();
+    const index = await Listing.find({});
     res.render('listings/index.ejs', { lists: index });
 
 });
