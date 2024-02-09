@@ -12,6 +12,7 @@ const { dbConnect } = require('./utils/dbCon');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./middlewares/ExpressError');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const { User } = require('./models/userModel');
@@ -25,7 +26,22 @@ dbConnect();
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+let dbURL = process.env.ATLAS_URL;
+const store = MongoStore.create({
+    mongoUrl: dbURL,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600
+})
+
+store.on("error", (err) => {
+    console.log("ERROR in MONGO SESSION STORE", err);
+})
+
 const sessionOptions = {
+    store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
@@ -59,6 +75,9 @@ app.use(reviewRouter.router);
 app.use(userRouter.router);
 
 
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+})
 
 // Pages which doesn't Exists
 app.all('*', (req, res, next) => {
