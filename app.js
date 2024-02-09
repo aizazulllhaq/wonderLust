@@ -69,16 +69,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(process.env.PUBLIC_DIR));
 
-app.get('/', (req, res) => {
-    res.redirect('/listings');
-})
+
 // Routes
 app.use("/listings", listingRouter.router);
 app.use(reviewRouter.router);
 app.use(userRouter.router);
 
 
-
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+})
 
 // Pages which doesn't Exists
 app.all('*', (req, res, next) => {
