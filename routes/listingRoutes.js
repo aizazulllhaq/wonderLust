@@ -18,3 +18,4 @@ exports.router = router
     .get('/:id/edit', isLoggedIn, isOwner, listingController.editList)
     .put('/:id/edit', isOwner, isLoggedIn, upload.single("listing[image]"), validateListing, listingController.updateList)
     .delete('/:id', isOwner, isLoggedIn, listingController.deleteList)
+
